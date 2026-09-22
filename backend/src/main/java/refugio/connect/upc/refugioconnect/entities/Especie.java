@@ -13,6 +13,9 @@ public class Especie {
     @Column(name = "nombreEspecie", nullable = false, unique = true, length = 50)
     private String nombreEspecie;
 
+    public Especie() {
+    }
+
     public Especie(Long idEspecie , String nombreEspecie) {
         this.idEspecie = idEspecie;
         this.nombreEspecie = nombreEspecie;
