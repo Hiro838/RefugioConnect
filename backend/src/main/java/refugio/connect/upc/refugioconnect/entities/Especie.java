@@ -3,7 +3,7 @@ package refugio.connect.upc.refugioconnect.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "especie")
+@Table(name = "especies")
 public class Especie {
 
     @Id
@@ -16,6 +16,9 @@ public class Especie {
     public Especie(Long idEspecie , String nombreEspecie) {
         this.idEspecie = idEspecie;
         this.nombreEspecie = nombreEspecie;
+    }
+
+    public Especie() {
     }
 
     public Long getIdEspecie() {
