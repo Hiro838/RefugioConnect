@@ -1,52 +1,24 @@
-package refugio.connect.upc.refugioconnect.entities;
+package refugio.connect.upc.refugioconnect.dtos;
 
-import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "solicitudes_adopcion")
-public class SolicitudAdopcion {
+public class SolicitudAdopcionDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_solicitud")
     private Long idSolicitud;
 
-    @Column(name = "id_usuario")
+    @NotNull(message = "El usuario es obligatorio.")
     private Long idUsuario;
 
-    @Column(name = "id_mascota")
+    @NotNull(message = "La mascota es obligatoria.")
     private Long idMascota;
 
-    @Column(name = "estado_solicitud", length = 30)
     private String estadoSolicitud;
 
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "cuestionario_json", columnDefinition = "jsonb")
     private String cuestionarioJson;
 
-    @Column(name = "fecha_solicitud")
     private LocalDateTime fechaSolicitud;
-
-    public SolicitudAdopcion() {
-    }
-
-    public SolicitudAdopcion(Long idSolicitud,
-                             Long idUsuario,
-                             Long idMascota,
-                             String estadoSolicitud,
-                             String cuestionarioJson,
-                             LocalDateTime fechaSolicitud) {
-        this.idSolicitud = idSolicitud;
-        this.idUsuario = idUsuario;
-        this.idMascota = idMascota;
-        this.estadoSolicitud = estadoSolicitud;
-        this.cuestionarioJson = cuestionarioJson;
-        this.fechaSolicitud = fechaSolicitud;
-    }
 
     public Long getIdSolicitud() {
         return idSolicitud;
