@@ -35,7 +35,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
         List<GrantedAuthority> authorities = user.getRoles()
                 .stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRol()))
+                .map(role -> new SimpleGrantedAuthority(role.getNombreRol()))
                 .map(authority -> (GrantedAuthority) authority)
                 .toList();
 
