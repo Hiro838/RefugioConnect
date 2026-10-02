@@ -36,4 +36,9 @@ public class SeguimientoAdopcionServiceImplement implements ISeguimientoAdopcion
     public void delete(Long id) {
         sR.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> countByEstadoMascota() {
+        return sR.countByEstadoMascota();
+    }
 }

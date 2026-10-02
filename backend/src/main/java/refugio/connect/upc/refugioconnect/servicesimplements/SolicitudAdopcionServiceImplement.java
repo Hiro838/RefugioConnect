@@ -36,4 +36,9 @@ public class SolicitudAdopcionServiceImplement implements ISolicitudAdopcionServ
     public void delete(Long id) {
         sR.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> countByEstadoSolicitud() {
+        return sR.countByEstadoSolicitud();
+    }
 }

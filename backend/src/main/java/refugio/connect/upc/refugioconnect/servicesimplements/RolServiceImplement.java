@@ -36,4 +36,9 @@ public class RolServiceImplement implements IRolService {
         rR.deleteById(id);
     }
 
+    @Override
+    public List<Object[]> countByNombreRol() {
+        return rR.countByNombreRol();
+    }
+
 }

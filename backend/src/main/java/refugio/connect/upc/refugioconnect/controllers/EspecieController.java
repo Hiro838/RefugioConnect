@@ -35,6 +35,11 @@ public class EspecieController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/total")
+    public ResponseEntity<Long> totalEspecies() {
+        return ResponseEntity.ok(eS.countEspecies());
+    }
+
     @PostMapping
     public ResponseEntity<EspecieDTO> registrar(@Valid @RequestBody EspecieDTO dto) {
         Especie especie = modelMapper.map(dto, Especie.class);

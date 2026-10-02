@@ -40,6 +40,11 @@ public class SeguimientoAdopcionController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/resumen-por-estado")
+    public ResponseEntity<List<Object[]>> resumenPorEstado() {
+        return ResponseEntity.ok(sS.countByEstadoMascota());
+    }
+
     @PostMapping
     public ResponseEntity<SeguimientoAdopcionDTO> registrar(
             @Valid @RequestBody SeguimientoAdopcionDTO dto) {

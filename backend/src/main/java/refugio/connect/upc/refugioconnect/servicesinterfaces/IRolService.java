@@ -10,4 +10,5 @@ public interface IRolService {
     public void insert(Rol r);
     public Optional<Rol>listId(Long id);
     public void delete(Long id);
+    List<Object[]> countByNombreRol();
 }

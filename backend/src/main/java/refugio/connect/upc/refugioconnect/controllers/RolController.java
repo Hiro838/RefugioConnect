@@ -43,6 +43,11 @@ public class RolController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/resumen-por-nombre")
+    public ResponseEntity<List<Object[]>> resumenPorNombre() {
+        return ResponseEntity.ok(rS.countByNombreRol());
+    }
+
     @PostMapping
     public ResponseEntity<RolDTO> registrar(@Valid @RequestBody RolDTO dto) {
         Rol rol = modelMapper.map(dto, Rol.class);

@@ -11,4 +11,5 @@ public interface IEspecieService {
     public void insert(Especie e);
     public Optional<Especie> listId(Long id);
     public void delete(Long id);
+    Long countEspecies();
 }

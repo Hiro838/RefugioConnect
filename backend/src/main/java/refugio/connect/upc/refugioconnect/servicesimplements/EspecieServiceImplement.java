@@ -35,4 +35,9 @@ public class EspecieServiceImplement implements IEspecieService {
     public void delete(Long id) {
         eR.deleteById(id);
     }
+
+    @Override
+    public Long countEspecies() {
+        return eR.countEspecies();
+    }
 }

@@ -14,4 +14,6 @@ public interface IDonacionService {
     public Optional<Donacion> listId(Long id);
 
     public void delete(Long id);
+
+    List<Object[]> getCantidadPorTipoDonacion();
 }

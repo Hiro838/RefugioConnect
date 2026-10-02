@@ -14,4 +14,6 @@ public interface ISolicitudAdopcionService {
     public Optional<SolicitudAdopcion> listId(Long id);
 
     public void delete(Long id);
+
+    List<Object[]> countByEstadoSolicitud();
 }

@@ -36,4 +36,9 @@ public class DonacionServiceImplement implements IDonacionService {
     public void delete(Long id) {
         dR.deleteById(id);
     }
+
+    @Override
+    public List<Object[]> getCantidadPorTipoDonacion() {
+        return dR.getCantidadPorTipoDonacion();
+    }
 }

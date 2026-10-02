@@ -37,6 +37,11 @@ public class DonacionController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/resumen-por-tipo")
+    public ResponseEntity<List<Object[]>> resumenPorTipo() {
+        return ResponseEntity.ok(dS.getCantidadPorTipoDonacion());
+    }
+
     @PostMapping
     public ResponseEntity<DonacionDTO> registrar(
             @Valid @RequestBody DonacionDTO dto) {

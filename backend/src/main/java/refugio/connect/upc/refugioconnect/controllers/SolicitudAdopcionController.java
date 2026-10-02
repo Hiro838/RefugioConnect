@@ -38,6 +38,11 @@ public class SolicitudAdopcionController {
         return ResponseEntity.ok(lista);
     }
 
+    @GetMapping("/resumen-por-estado")
+    public ResponseEntity<List<Object[]>> resumenPorEstado() {
+        return ResponseEntity.ok(sS.countByEstadoSolicitud());
+    }
+
     @PostMapping
     public ResponseEntity<SolicitudAdopcionDTO> registrar(
             @Valid @RequestBody SolicitudAdopcionDTO dto) {

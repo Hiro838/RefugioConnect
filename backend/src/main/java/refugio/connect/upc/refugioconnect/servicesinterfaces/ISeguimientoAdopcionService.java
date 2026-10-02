@@ -14,4 +14,6 @@ public interface ISeguimientoAdopcionService {
     public Optional<SeguimientoAdopcion> listId(Long id);
 
     public void delete(Long id);
+
+    List<Object[]> countByEstadoMascota();
 }
