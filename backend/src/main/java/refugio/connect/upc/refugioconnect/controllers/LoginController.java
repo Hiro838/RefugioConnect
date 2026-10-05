@@ -29,7 +29,7 @@ public class LoginController {
         this.jwtTokenService = jwtTokenService;
     }
 
-    @PostMapping("examen-parcial/17731")
+    @PostMapping("login/final")
     public ResponseEntity<LoginResponseDTO> login(
             @RequestBody LoginRequestDTO request) {
 
