@@ -1,40 +1,38 @@
 package refugio.connect.upc.refugioconnect.entities;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "historial_medico")
+@Table(name = "historiales_medicos")
 public class HistorialMedico {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idHistorialMedico;
 
-    @Column(name = "tipo_tratamiento", nullable = false, length = 50) // VARCHAR(50) N-N[cite: 5]
+    @Column (name = "tipo_tratamiento", length = 100, nullable = false)
     private String tipoTratamiento;
 
-    @Column(name = "descripcion", nullable = false, columnDefinition = "TEXT") // TEXT N-N[cite: 5]
+    @Column (name = "descripcion", length = 255, nullable = false)
     private String descripcion;
 
-    @Column(name = "fechaTratamiento", nullable = false) // DATE N-N[cite: 5]
-    private LocalDate fechaTratamiento;
+    @Column (name = "fecha_tratamiento", nullable = false)
+    private LocalDateTime fechaTratamiento;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idMascota", nullable = false) // BIGINT N-N[cite: 5]
-    private Mascotas mascotas;
+    @ManyToOne
+    @JoinColumn (name = "id_mascota", nullable = false)
+    private Mascotas mascota;
 
-
-    public HistorialMedico(){
-
+    public HistorialMedico() {
     }
 
-    public HistorialMedico(Long idHistorialMedico, String tipoTratamiento, String descripcion, LocalDate fechaTratamiento, Mascotas mascotas) {
+    public HistorialMedico(Long idHistorialMedico, String tipoTratamiento, String descripcion, LocalDateTime fechaTratamiento, Mascotas mascota) {
         this.idHistorialMedico = idHistorialMedico;
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
         this.fechaTratamiento = fechaTratamiento;
-        this.mascotas = mascotas;
+        this.mascota = mascota;
     }
 
     public Long getIdHistorialMedico() {
@@ -61,19 +59,19 @@ public class HistorialMedico {
         this.descripcion = descripcion;
     }
 
-    public LocalDate getFechaTratamiento() {
+    public LocalDateTime getFechaTratamiento() {
         return fechaTratamiento;
     }
 
-    public void setFechaTratamiento(LocalDate fechaTratamiento) {
+    public void setFechaTratamiento(LocalDateTime fechaTratamiento) {
         this.fechaTratamiento = fechaTratamiento;
     }
 
-    public Mascotas getMascotas() {
-        return mascotas;
+    public Mascotas getMascota() {
+        return mascota;
     }
 
-    public void setMascotas(Mascotas mascotas) {
-        this.mascotas = mascotas;
+    public void setMascota(Mascotas mascota) {
+        this.mascota = mascota;
     }
 }

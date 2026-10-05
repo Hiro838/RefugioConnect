@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import refugio.connect.upc.refugioconnect.dtos.RolDTO;
 import refugio.connect.upc.refugioconnect.entities.Rol;
+import refugio.connect.upc.refugioconnect.entities.Usuario;
 import refugio.connect.upc.refugioconnect.exceptions.ResourceNotFoundException;
+import refugio.connect.upc.refugioconnect.repositories.IUsersRepository;
 import refugio.connect.upc.refugioconnect.servicesinterfaces.IRolService;
 
 import java.net.URI;
@@ -19,17 +21,23 @@ public class RolController {
 
     private final IRolService rS;
     private final ModelMapper modelMapper;
+    private final IUsersRepository usersRepository;
 
-    public RolController(IRolService rS, ModelMapper modelMapper) {
+    public RolController(
+            IRolService rS,
+            ModelMapper modelMapper,
+            IUsersRepository usersRepository
+    ) {
         this.rS = rS;
         this.modelMapper = modelMapper;
+        this.usersRepository = usersRepository;
     }
 
     @GetMapping
     public ResponseEntity<List<RolDTO>> listar() {
         List<RolDTO> lista = rS.list()
                 .stream()
-                .map(r -> modelMapper.map(r, RolDTO.class))
+                .map(this::toDTO)
                 .toList();
 
         return ResponseEntity.ok(lista);
@@ -38,9 +46,10 @@ public class RolController {
     @PostMapping
     public ResponseEntity<RolDTO> registrar(@Valid @RequestBody RolDTO dto) {
         Rol rol = modelMapper.map(dto, Rol.class);
+        rol.setUser(findUser(dto.getIdUsuario()));
         rS.insert(rol);
 
-        RolDTO responseDTO = modelMapper.map(rol, RolDTO.class);
+        RolDTO responseDTO = toDTO(rol);
 
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -59,7 +68,7 @@ public class RolController {
                                 "No existe el rol con ID: " + id
                         ));
 
-        RolDTO responseDTO = modelMapper.map(rol, RolDTO.class);
+        RolDTO responseDTO = toDTO(rol);
         return ResponseEntity.ok(responseDTO);
     }
 
@@ -74,9 +83,10 @@ public class RolController {
         // Mapeamos los nuevos datos sobre la entidad existente
         modelMapper.map(dto, rol);
         rol.setIdRol(id); // Aseguramos que el ID no cambie
+        rol.setUser(findUser(dto.getIdUsuario()));
         rS.insert(rol);
 
-        RolDTO responseDTO = modelMapper.map(rol, RolDTO.class);
+        RolDTO responseDTO = toDTO(rol);
         return ResponseEntity.ok(responseDTO);
     }
 
@@ -90,5 +100,18 @@ public class RolController {
 
         rS.delete(rol.getIdRol());
         return ResponseEntity.noContent().build();
+    }
+
+    private Usuario findUser(Long userId) {
+        return usersRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "No existe el usuario con ID: " + userId
+                ));
+    }
+
+    private RolDTO toDTO(Rol rol) {
+        RolDTO dto = modelMapper.map(rol, RolDTO.class);
+        dto.setIdUsuario(rol.getUser().getId());
+        return dto;
     }
 }
