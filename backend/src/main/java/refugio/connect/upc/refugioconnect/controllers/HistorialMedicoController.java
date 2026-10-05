@@ -42,7 +42,7 @@ public class HistorialMedicoController {
     public ResponseEntity<HistorialMedicoDTO> registrar(
             @Valid @RequestBody HistorialMedicoDTO dto) {
         HistorialMedico historial = modelMapper.map(dto, HistorialMedico.class);
-        historial.setMascotas(obtenerMascota(dto.getIdMascotas()));
+        historial.setMascota(obtenerMascota(dto.getIdMascotas()));
         historialService.insert(historial);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -63,7 +63,7 @@ public class HistorialMedicoController {
         HistorialMedico historial = obtenerHistorial(id);
         modelMapper.map(dto, historial);
         historial.setIdHistorialMedico(id);
-        historial.setMascotas(obtenerMascota(dto.getIdMascotas()));
+        historial.setMascota(obtenerMascota(dto.getIdMascotas()));
         historialService.insert(historial);
         return ResponseEntity.ok(toDto(historial));
     }
@@ -89,8 +89,8 @@ public class HistorialMedicoController {
 
     private HistorialMedicoDTO toDto(HistorialMedico historial) {
         HistorialMedicoDTO dto = modelMapper.map(historial, HistorialMedicoDTO.class);
-        if (historial.getMascotas() != null) {
-            dto.setIdMascotas(historial.getMascotas().getIdMascotas());
+        if (historial.getMascota() != null) {
+            dto.setIdMascotas(historial.getMascota().getIdMascotas());
         }
         return dto;
     }
