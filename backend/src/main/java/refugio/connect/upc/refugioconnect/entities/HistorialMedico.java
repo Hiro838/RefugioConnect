@@ -22,12 +22,12 @@ public class HistorialMedico {
 
     @ManyToOne
     @JoinColumn (name = "id_mascota", nullable = false)
-    private Mascota mascota;
+    private Mascotas mascota;
 
     public HistorialMedico() {
     }
 
-    public HistorialMedico(Long idHistorialMedico, String tipoTratamiento, String descripcion, LocalDateTime fechaTratamiento, Mascota mascota) {
+    public HistorialMedico(Long idHistorialMedico, String tipoTratamiento, String descripcion, LocalDateTime fechaTratamiento, Mascotas mascota) {
         this.idHistorialMedico = idHistorialMedico;
         this.tipoTratamiento = tipoTratamiento;
         this.descripcion = descripcion;
@@ -67,11 +67,11 @@ public class HistorialMedico {
         this.fechaTratamiento = fechaTratamiento;
     }
 
-    public Mascota getMascota() {
+    public Mascotas getMascota() {
         return mascota;
     }
 
-    public void setMascota(Mascota mascota) {
+    public void setMascota(Mascotas mascota) {
         this.mascota = mascota;
     }
 }

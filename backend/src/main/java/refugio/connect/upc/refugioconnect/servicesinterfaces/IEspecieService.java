@@ -1,7 +1,6 @@
 package refugio.connect.upc.refugioconnect.servicesinterfaces;
 
 import refugio.connect.upc.refugioconnect.entities.Especie;
-import refugio.connect.upc.refugioconnect.entities.Rol;
 
 import java.util.List;
 import java.util.Optional;

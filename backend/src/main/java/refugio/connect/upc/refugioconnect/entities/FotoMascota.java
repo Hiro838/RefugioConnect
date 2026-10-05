@@ -18,12 +18,12 @@ public class FotoMascota {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_mascota", nullable = false)
-    private Mascota mascota;
+    private Mascotas mascota;
 
     public FotoMascota() {
     }
 
-    public FotoMascota(Long idFotoMascota, String urlfoto, boolean es_principal, Mascota mascota) {
+    public FotoMascota(Long idFotoMascota, String urlfoto, boolean es_principal, Mascotas mascota) {
         this.idFotoMascota = idFotoMascota;
         this.urlfoto = urlfoto;
         this.es_principal = es_principal;
@@ -54,11 +54,11 @@ public class FotoMascota {
         this.es_principal = es_principal;
     }
 
-    public Mascota getMascota() {
+    public Mascotas getMascota() {
         return mascota;
     }
 
-    public void setMascota(Mascota mascota) {
+    public void setMascota(Mascotas mascota) {
         this.mascota = mascota;
     }
 }

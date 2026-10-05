@@ -1,44 +1,47 @@
 package refugio.connect.upc.refugioconnect.entities;
+
 import jakarta.persistence.*;
-import java.io.Serializable;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "mascotas")
-public class Mascota implements Serializable {
+public class Mascotas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_mascota")
-    private Long idMascota;
+    @Column(name = "idMascota")
+    private Long idMascotas;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_raza", nullable = false)
-    private Raza raza;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idRaza", nullable = false)
+    private Razas raza;
 
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "edad_meses")
-    private int edadMeses;
+    @Column(name = "edadMeses")
+    private Integer edadMeses;
 
     @Column(name = "tamano", nullable = false, length = 20)
     private String tamano;
 
-    @Column(name = "estado", length = 30)
-    private String estado;
+    @Column(name = "estado", nullable = false, length = 30)
+    private Boolean estado ;
 
-    @Column(name = "descripcion", columnDefinition = "TEXT")
+    @Column(name = "descripcion", nullable = false, length = 30)
     private String descripcion;
 
-    @Column(name = "fecha_ingreso", updatable = false)
+    @Column(name = "fechaIngreso", nullable = false)
     private LocalDateTime fechaIngreso;
 
-    public Mascota() {
+    public Mascotas() {
     }
 
-    public Mascota(Long idMascota, Raza raza, String nombre, int edadMeses, String tamano, String estado, String descripcion, LocalDateTime fechaIngreso) {
-        this.idMascota = idMascota;
+    public Mascotas(Long idMascotas, Razas raza, String nombre, Integer edadMeses,
+                    String tamano, Boolean estado, String descripcion,
+                    LocalDateTime fechaIngreso) {
+        this.idMascotas = idMascotas;
         this.raza = raza;
         this.nombre = nombre;
         this.edadMeses = edadMeses;
@@ -48,19 +51,19 @@ public class Mascota implements Serializable {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Long getIdMascota() {
-        return idMascota;
+    public Long getIdMascotas() {
+        return idMascotas;
     }
 
-    public void setIdMascota(Long idMascota) {
-        this.idMascota = idMascota;
+    public void setIdMascotas(Long idMascotas) {
+        this.idMascotas = idMascotas;
     }
 
-    public Raza getRaza() {
+    public Razas getRaza() {
         return raza;
     }
 
-    public void setRaza(Raza raza) {
+    public void setRaza(Razas raza) {
         this.raza = raza;
     }
 
@@ -88,11 +91,11 @@ public class Mascota implements Serializable {
         this.tamano = tamano;
     }
 
-    public String getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 

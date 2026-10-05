@@ -1,22 +1,27 @@
 package refugio.connect.upc.refugioconnect.entities;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "razas")
-public class Raza {
+public class Razas {
+
     @Id
-    @GeneratedValue (strategy = jakarta.persistence.GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRaza;
-    @Column(name = "nombre_raza", nullable = false, length = 100)
+
+    @Column(name = "nombreRaza", nullable = false, length = 100)
     private String nombreRaza;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_especie", nullable = false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idEspecie", nullable = false)
     private Especie especie;
 
-    public Raza() {
+    public Razas(){
+
     }
 
-    public Raza(Long idRaza, String nombreRaza, Especie especie) {
+    public Razas(Long idRaza, String nombreRaza, Especie especie){
         this.idRaza = idRaza;
         this.nombreRaza = nombreRaza;
         this.especie = especie;
