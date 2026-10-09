@@ -15,7 +15,7 @@ import refugio.connect.upc.refugioconnect.securities.JwtTokenService;
 
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api/login")
 public class LoginController {
     private final AuthenticationManager authenticationManager;
 
